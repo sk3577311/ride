@@ -1,6 +1,7 @@
 {
     "expo": {
         "name": "ride",
+        "scheme": "yourscheme",
         "slug": "ride",
         "version": "1.0.0",
         "orientation": "portrait",

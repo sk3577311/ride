@@ -4787,7 +4787,7 @@ expo-asset@~8.9.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-auth-session@^4.0.3:
+expo-auth-session@~4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-4.0.3.tgz#400df83d3858e995d1f3d090bbe189fc3c165c2a"
   integrity sha512-jLDZtSt7ZCuXv4ZYtVPvLf59gd7g3gEgUhiWpEwQvLFL0t+UXL2leFKAG28pzFjDZxbgBk0ya3RyLmBiE6HUqQ==
@@ -4807,7 +4807,7 @@ expo-constants@~14.2.0, expo-constants@~14.2.1:
     "@expo/config" "~8.0.0"
     uuid "^3.3.2"
 
-expo-crypto@^12.2.1, expo-crypto@~12.2.0:
+expo-crypto@~12.2.0, expo-crypto@~12.2.1:
   version "12.2.1"
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-12.2.1.tgz#d4f0ef5e2148e1168628d0ebcc2697da3e5df8b3"
   integrity sha512-NfKsREzj55xCm0v9OKuNw3DU1r6i6VNTYrQcYSZfGOp7o+tvZsJRyr+NyrUg5YVH93TUkothCtsPahdYA4r1Wg==
@@ -4930,7 +4930,7 @@ expo-updates@^0.16.3:
     fbemitter "^3.0.0"
     resolve-from "^5.0.0"
 
-expo-web-browser@^12.1.1, expo-web-browser@~12.1.0:
+expo-web-browser@~12.1.0, expo-web-browser@~12.1.1:
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-12.1.1.tgz#b2c9ce26b82ea62b12041d8201bfeb21d27fc528"
   integrity sha512-QdFnJKCKzWrvTIjFL2Yb6SlfyJWfBw1S1ceRyGtQSp4p7WFsvfbR6oJyucF04SJD7GshBluIlchrQK7XH/4EWQ==
@@ -8466,6 +8466,11 @@ react-native-gesture-handler@^2.9.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-google-signin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.1.tgz#4281940eee88602b0181dd49affdf8c92980c85c"
+  integrity sha512-6l3fiLdX/bfhh0BoxGq+jGkagFsO+mrE/eRV4+3/0k8+FDxO90vdPpQdDiwlM5vWXRxWthTzMM09/jHw+4cvNw==
 
 react-native-gradle-plugin@^0.71.16:
   version "0.71.16"

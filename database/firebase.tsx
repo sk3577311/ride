@@ -1,23 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCyFid0N-ll7nJNpA4LRCTaPcgMOQSNCzI",
-  authDomain: "vue3-social-login.firebaseapp.com",
-  projectId: "vue3-social-login",
-  storageBucket: "vue3-social-login.appspot.com",
-  messagingSenderId: "1043086831460",
-  appId: "1:1043086831460:web:5eed1c62f907feb761d471",
-  measurementId: "G-VPZREC6N62"
+  apiKey: "AIzaSyDQYTV7WCaj3LoZZ6AmpTqT4tWmdQrQp8w",
+  authDomain: "login-4c73e.firebaseapp.com",
+  projectId: "login-4c73e",
+  storageBucket: "login-4c73e.appspot.com",
+  messagingSenderId: "60807856972",
+  appId: "1:60807856972:web:9a20ef940ef4f62b7b05e9",
+  measurementId: "G-RNMJPLL5FB"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export default app;
+const firebase = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+
+export default firebase

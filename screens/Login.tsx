@@ -3,15 +3,17 @@ import React, { useState, useEffect } from "react";
 import { FunctionComponent } from "react";
 import styled from "styled-components/native";
 import { StatusBar } from "expo-status-bar";
-import auth from "@react-native-firebase/auth";
 //fonts
 import SmallText from "../components/Texts/SmallText";
 import BigText from "../components/Texts/BigText";
 import { RootStackParamList } from "../navigators/RootStack";
 import { StackScreenProps } from "@react-navigation/stack";
 import { SocialIcon, Input } from "react-native-elements";
-import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-community/google-signin";
 import {
   View,
   Text,
@@ -25,7 +27,10 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { color } from "../components/colors";
 import { Container } from "../components/shared";
-import app from "../database/firebase";
+import firebase from "../database/firebase";
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import { makeRedirectUri } from "expo-auth-session";
 
 const WelcomeContainer = styled(Container)`
   background-color: ${color.secondary};
@@ -69,11 +74,24 @@ export const Login: FunctionComponent<props> = ({ navigation }) => {
   function onLoginHandler(values, actions) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    navigation.navigate('Home')
   }
 
+  WebBrowser.maybeCompleteAuthSession();
   const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId:"1043086831460-mr69gm3kte6nhmdu1mf2fpnlega9komd.apps.googleusercontent.com",
+    scopes:["email","profile"],
+    redirectUri:makeRedirectUri({
+      native:"60807856972-ipdidvrf68ljj549lr5v1f70ta369pr4.apps.googleusercontent.com"
+    }),
+    expoClientId:
+      "60807856972-ipdidvrf68ljj549lr5v1f70ta369pr4.apps.googleusercontent.com",
   });
+  useEffect(() => {
+    if (response?.type === 'success') {
+        const authentication = response;
+        getGoogleUser(authentication.accessToken)
+    }
+ }, [response]);
   return (
     <>
       <StatusBar style="light" />
@@ -96,8 +114,7 @@ export const Login: FunctionComponent<props> = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 onLoginHandler(values, actions);
               }}
-              validationSchema={validationSchema}
-            >
+              validationSchema={validationSchema} >
               {({
                 handleChange,
                 values,
@@ -140,7 +157,7 @@ export const Login: FunctionComponent<props> = ({ navigation }) => {
                     errorValue={touched.password && errors.password}
                   />
                   <TouchableOpacity
-                    onPress={handleSubmit}
+                    onPress={()=>{handleSubmit}}
                     style={styles.buttonContainer}
                   >
                     <Text style={styles.buttonText}>Submit</Text>
@@ -149,8 +166,7 @@ export const Login: FunctionComponent<props> = ({ navigation }) => {
                     onPress={() => {
                       navigation.navigate("Signup");
                     }}
-                    style={styles.buttonContainer}
-                  >
+                    style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Dont have an account?</Text>
                   </TouchableOpacity>
                   <SmallText
@@ -171,8 +187,9 @@ export const Login: FunctionComponent<props> = ({ navigation }) => {
                     <TouchableOpacity>
                       <SocialIcon
                         type="google"
+                        disabled={!request}
                         onPress={() => {
-                          promptAsync();
+                          promptAsync({useProxy: true});
                         }}
                       />
                     </TouchableOpacity>
